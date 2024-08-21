@@ -15,12 +15,16 @@ link_directories(/opt/homebrew/Cellar/glfw/3.4/lib)
 
 include_directories(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/src
                                     ${PROJECT_SOURCE_DIR}/third_party
-                                    ${PROJECT_SOURCE_DIR}/third_party/imgui)
+                                    ${PROJECT_SOURCE_DIR}/third_party/imgui
+                                    ${PROJECT_SOURCE_DIR}/third_party/stbi
+)
 
 add_executable(2d_pixel_renderer
                 main.cpp
 
                 glad/src/glad.c
+
+                third_party/stbi/stb_image.cpp
 
                 third_party/imgui/imgui.cpp
                 third_party/imgui/imgui_draw.cpp
