@@ -13,12 +13,9 @@
 #ifndef INC_2D_PIXEL_RENDERER_IMGUI_WND_H
 #define INC_2D_PIXEL_RENDERER_IMGUI_WND_H
 
-#include "glad/glad.h"
-#include "imgui.h"
-#include "backends/imgui_impl_opengl3.h"
-#include "backends/imgui_impl_glfw.h"
 
 #include "GLFW/glfw3.h"
+#include "imgui.h"
 
 class ImGuiWindowImplGlfw {
 private:

@@ -34,8 +34,11 @@ add_executable(2d_pixel_renderer
 
                 third_party/imgui/backends/imgui_impl_glfw.cpp
                 third_party/imgui/backends/imgui_impl_opengl3.cpp
-        src/imgui_wnd.cpp
-        src/imgui_wnd.h
+
+                src/imgui_wnd.cpp
+                src/imgui_wnd.h
+                src/imgui_pixel_renderer.cpp
+                src/imgui_pixel_renderer.h
 )
 
 target_link_libraries(

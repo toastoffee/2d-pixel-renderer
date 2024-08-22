@@ -8,11 +8,14 @@
   ******************************************************************************
   */
 
-
+#include "glad/glad.h"
 
 #include "imgui_wnd.h"
+#include "backends/imgui_impl_opengl3.h"
+#include "backends/imgui_impl_glfw.h"
 
 #include <iostream>
+
 
 static void glfw_error_callback(int error, const char* description)
 {
@@ -69,6 +72,8 @@ bool ImGuiWindowImplGlfw::Init() {
     ImGui_ImplGlfw_InstallEmscriptenCallbacks(window, "#canvas");
 #endif
     ImGui_ImplOpenGL3_Init(glsl_version);
+
+    return true;
 }
 
 void ImGuiWindowImplGlfw::Close() {
