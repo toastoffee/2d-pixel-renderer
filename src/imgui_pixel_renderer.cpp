@@ -12,6 +12,7 @@
 #include "glad/glad.h"
 #include "imgui_pixel_renderer.h"
 #include "stbi/stb_image.h"
+#include "file_helper.h"
 
 ImGuiPixelRenderer::ImGuiPixelRenderer() {
     _tex    = 0;
@@ -61,7 +62,7 @@ void ImGuiPixelRenderer::GeneTex(const unsigned char *data, int width, int heigh
     int texDataSize = headerSize + width * height * 3;
 
     unsigned char *texData;
-    texData = new unsigned char[texDataSize];
+    texData = (unsigned char *) malloc(texDataSize);
 
     // 1. write in the ppm header
     memcpy(texData, ppmHeader, strlen(ppmHeader));
@@ -91,6 +92,16 @@ void ImGuiPixelRenderer::GeneTex(const unsigned char *data, int width, int heigh
     free(texData);
 }
 
+void ImGuiPixelRenderer::GeneTex(const char *fileName) {
+    void *data = nullptr;
+    size_t fileSize = LoadFile(fileName, data);
+
+    LoadTextureFromMemory(data, fileSize, &_tex, &_width, &_height);
+
+    free(data);
+}
+
 void ImGuiPixelRenderer::Render() {
     ImGui::Image((void*)(intptr_t)_tex, ImVec2(_width, _height));
 }
+

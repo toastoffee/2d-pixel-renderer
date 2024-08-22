@@ -14,17 +14,17 @@ int main() {
     void *data = nullptr;
     LoadFile("/Users/toastoffee/Documents/CLionProjects/2d-pixel-renderer/images/mario_doc.bin", data);
 
-//    ImGuiPixelRenderer pixelRenderer;
-//    pixelRenderer.GeneTex((const unsigned char*)data, 128, 192, ColorMode::RGBA);
+    ImGuiPixelRenderer pixelRenderer;
+    pixelRenderer.GeneTex((const unsigned char*)data, 128, 192, ColorMode::RGBA);
 
 
 
-    renderWnd.RenderLoop([]() {
-//        ImGui::Begin("pixel renderer");
-//
-////        pixelRenderer.Render();
-//
-//        ImGui::End();
+    renderWnd.RenderLoop([&pixelRenderer]() {
+        ImGui::Begin("pixel renderer");
+
+        pixelRenderer.Render();
+
+        ImGui::End();
     });
 
     renderWnd.Close();

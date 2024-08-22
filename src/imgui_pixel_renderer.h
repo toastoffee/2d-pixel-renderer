@@ -31,6 +31,8 @@ public:
 
     void GeneTex(const unsigned char *data, int width, int height, ColorMode mode);
 
+    void GeneTex(const char* fileName);
+
     void Render();
 };
 

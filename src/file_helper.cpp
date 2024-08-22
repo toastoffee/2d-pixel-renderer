@@ -14,20 +14,20 @@
 #include <cstdlib>
 #include "file_helper.h"
 
-bool LoadFile(const char* fileName, void* data)
+size_t LoadFile(const char* fileName, void* &data)
 {
     FILE* f = fopen(fileName, "rb");
     if (f == NULL)
-        return false;
+        return 0;
     fseek(f, 0, SEEK_END);
-    size_t fileSize = (size_t)ftell(f);
+    auto fileSize = (size_t)ftell(f);
     if (fileSize == -1)
-        return false;
+        return 0;
     fseek(f, 0, SEEK_SET);
 
     data = malloc(fileSize);
 
     fread(data, 1, fileSize, f);
 
-    return true;
+    return fileSize;
 }
