@@ -30,6 +30,7 @@ private:
 
     bool Init();
     void Close();
+    void RenderLoop(void (*renderFunc)());
 
 };
 
