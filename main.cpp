@@ -14,6 +14,9 @@ int main() {
     renderWnd.RenderLoop([](){
         ImGui::Begin("Test Wnd");
 
+        void *data;
+
+
         ImGui::End();
     });
 
