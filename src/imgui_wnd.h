@@ -23,9 +23,13 @@
 class ImGuiWindowImplGlfw {
 private:
     GLFWwindow *_wnd;
+    ImVec4 _clearColor;
 
     ImGuiWindowImplGlfw();
     ~ImGuiWindowImplGlfw();
+
+    bool Init();
+    void Close();
 
 };
 
