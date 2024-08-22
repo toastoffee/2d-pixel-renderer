@@ -25,6 +25,7 @@ private:
     GLFWwindow *_wnd;
     ImVec4 _clearColor;
 
+public:
     ImGuiWindowImplGlfw();
     ~ImGuiWindowImplGlfw();
 
