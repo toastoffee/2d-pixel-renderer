@@ -19,13 +19,19 @@ int main() {
 //    pixelRenderer.GeneTex("/Users/toastoffee/Documents/CLionProjects/2d-pixel-renderer/images/mario_doc.ppm");
 
 
-    renderWnd.RenderLoop([&pixelRenderer]() {
-        ImGui::Begin("pixel renderer");
+//    renderWnd.RenderLoop([&pixelRenderer]() {
+//        ImGui::Begin("pixel renderer");
+//
+//        pixelRenderer.Render();
+//
+//        ImGui::End();
+//    });
 
+    while(!renderWnd.IsWndShouldClose()) {
+        renderWnd.BeginLoop();
         pixelRenderer.Render();
-
-        ImGui::End();
-    });
+        renderWnd.EndLoop();
+    }
 
     renderWnd.Close();
 }

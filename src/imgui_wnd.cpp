@@ -138,3 +138,53 @@ void ImGuiWindowImplGlfw::RenderLoop(const std::function<void()>& onRender) {
 #endif
 
 }
+
+void ImGuiWindowImplGlfw::BeginLoop() {
+    // Main loop
+#ifdef __EMSCRIPTEN__
+    // For an Emscripten build we are disabling file-system access, so let's not attempt to do a fopen() of the imgui.ini file.
+    // You may manually call LoadIniSettingsFromMemory() to load settings from your own storage.
+    io.IniFilename = nullptr;
+    EMSCRIPTEN_MAINLOOP_BEGIN
+#else
+//    while (!glfwWindowShouldClose(_wnd))
+#endif
+
+    // Poll and handle events (inputs, window resize, etc.)
+    // You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
+    // - When io.WantCaptureMouse is true, do not dispatch mouse input data to your main application, or clear/overwrite your copy of the mouse data.
+    // - When io.WantCaptureKeyboard is true, do not dispatch keyboard input data to your main application, or clear/overwrite your copy of the keyboard data.
+    // Generally you may always pass all inputs to dear imgui, and hide them from your application based on those two flags.
+    glfwPollEvents();
+    if (glfwGetWindowAttrib(_wnd, GLFW_ICONIFIED) != 0)
+    {
+        return;
+    }
+
+    // Start the Dear ImGui frame
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+    ImGui::NewFrame();
+}
+
+void ImGuiWindowImplGlfw::EndLoop() {
+
+    // Rendering
+    ImGui::Render();
+    int display_w, display_h;
+    glfwGetFramebufferSize(_wnd, &display_w, &display_h);
+    glViewport(0, 0, display_w, display_h);
+    glClearColor(_clearColor.x * _clearColor.w, _clearColor.y * _clearColor.w, _clearColor.z * _clearColor.w, _clearColor.w);
+    glClear(GL_COLOR_BUFFER_BIT);
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+    glfwSwapBuffers(_wnd);
+
+#ifdef __EMSCRIPTEN__
+EMSCRIPTEN_MAINLOOP_END;
+#endif
+}
+
+bool ImGuiWindowImplGlfw::IsWndShouldClose() {
+    return glfwWindowShouldClose(_wnd);
+}

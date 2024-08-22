@@ -32,6 +32,10 @@ public:
     void Close();
     void RenderLoop(const std::function<void()>& onRender = [](){});
 
+    void BeginLoop();
+    void EndLoop();
+
+    bool IsWndShouldClose();
 };
 
 
