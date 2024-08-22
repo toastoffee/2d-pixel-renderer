@@ -3,7 +3,7 @@
 #include "imgui.h"
 #include "imgui_wnd.h"
 #include "imgui_pixel_renderer.h"
-
+#include "file_helper.h"
 
 
 int main() {
@@ -11,13 +11,20 @@ int main() {
 
     renderWnd.Init();
 
-    renderWnd.RenderLoop([](){
-        ImGui::Begin("Test Wnd");
+    void *data = nullptr;
+    LoadFile("/Users/toastoffee/Documents/CLionProjects/2d-pixel-renderer/images/mario_doc.bin", data);
 
-        void *data;
+//    ImGuiPixelRenderer pixelRenderer;
+//    pixelRenderer.GeneTex((const unsigned char*)data, 128, 192, ColorMode::RGBA);
 
 
-        ImGui::End();
+
+    renderWnd.RenderLoop([]() {
+//        ImGui::Begin("pixel renderer");
+//
+////        pixelRenderer.Render();
+//
+//        ImGui::End();
     });
 
     renderWnd.Close();

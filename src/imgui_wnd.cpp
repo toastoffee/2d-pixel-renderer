@@ -90,7 +90,7 @@ void ImGuiWindowImplGlfw::Close() {
     }
 }
 
-void ImGuiWindowImplGlfw::RenderLoop(void (*renderFunc)()) {
+void ImGuiWindowImplGlfw::RenderLoop(const std::function<void()>& onRender) {
 
     // Main loop
 #ifdef __EMSCRIPTEN__
@@ -119,7 +119,7 @@ void ImGuiWindowImplGlfw::RenderLoop(void (*renderFunc)()) {
         ImGui::NewFrame();
 
         {
-            renderFunc();
+            onRender();
         }
 
         // Rendering

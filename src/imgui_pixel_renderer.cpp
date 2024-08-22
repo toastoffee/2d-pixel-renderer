@@ -52,6 +52,9 @@ bool LoadTextureFromMemory(const void* data, size_t data_size, GLuint* out_textu
 void ImGuiPixelRenderer::GeneTex(const unsigned char *data, int width, int height, ColorMode mode) {
     assert(mode != ColorMode::NONE && "color mode is none!");
 
+    _width = width;
+    _height = height;
+
     char ppmHeader[100] = {0};
     snprintf(ppmHeader, 100, "P6 %d %d 255", width, height);
     int headerSize = (int) strlen(ppmHeader);
@@ -86,4 +89,8 @@ void ImGuiPixelRenderer::GeneTex(const unsigned char *data, int width, int heigh
     LoadTextureFromMemory((const void*)texData, texDataSize, &_tex, nullptr, nullptr);
 
     free(texData);
+}
+
+void ImGuiPixelRenderer::Render() {
+    ImGui::Image((void*)(intptr_t)_tex, ImVec2(_width, _height));
 }

@@ -30,6 +30,8 @@ public:
     ImGuiPixelRenderer();
 
     void GeneTex(const unsigned char *data, int width, int height, ColorMode mode);
+
+    void Render();
 };
 
 

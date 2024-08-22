@@ -17,6 +17,8 @@
 #include "GLFW/glfw3.h"
 #include "imgui.h"
 
+#include <functional>
+
 class ImGuiWindowImplGlfw {
 private:
     GLFWwindow *_wnd;
@@ -28,7 +30,7 @@ public:
 
     bool Init();
     void Close();
-    void RenderLoop(void (*renderFunc)());
+    void RenderLoop(const std::function<void()>& onRender = [](){});
 
 };
 
