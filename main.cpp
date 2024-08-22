@@ -16,7 +16,7 @@ int main() {
 
     ImGuiPixelRenderer pixelRenderer;
     pixelRenderer.GeneTex((const unsigned char*)data, 128, 192, ColorMode::RGBA);
-
+//    pixelRenderer.GeneTex("/Users/toastoffee/Documents/CLionProjects/2d-pixel-renderer/images/mario_doc.ppm");
 
 
     renderWnd.RenderLoop([&pixelRenderer]() {

@@ -57,7 +57,7 @@ void ImGuiPixelRenderer::GeneTex(const unsigned char *data, int width, int heigh
     _height = height;
 
     char ppmHeader[100] = {0};
-    snprintf(ppmHeader, 100, "P6 %d %d 255", width, height);
+    snprintf(ppmHeader, 100, "P6 %d %d 255 ", width, height);
     int headerSize = (int) strlen(ppmHeader);
     int texDataSize = headerSize + width * height * 3;
 
@@ -87,7 +87,7 @@ void ImGuiPixelRenderer::GeneTex(const unsigned char *data, int width, int heigh
         }
     }
 
-    LoadTextureFromMemory((const void*)texData, texDataSize, &_tex, nullptr, nullptr);
+    LoadTextureFromMemory((const void*)texData, texDataSize, &_tex, &_width, &_height);
 
     free(texData);
 }
