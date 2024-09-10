@@ -39,8 +39,8 @@ add_executable(2d_pixel_renderer
                 src/imgui_wnd.h
                 src/imgui_pixel_renderer.cpp
                 src/imgui_pixel_renderer.h
-        src/file_helper.cpp
-        src/file_helper.h
+                src/file_helper.cpp
+                src/file_helper.h
 )
 
 target_link_libraries(
